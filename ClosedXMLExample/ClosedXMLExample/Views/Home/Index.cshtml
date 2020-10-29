@@ -1,0 +1,111 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<div class="text-center">
+    <h1 class="display-4">Export Excel</h1>
+
+    <a href="/export/simple" class="btn btn-primary m-1 btn-sm">Export Excel Simple (.NET CORE)</a>
+    <button onclick="exportExcel()" class="btn btn-primary m-1 btn-sm">Export Excel Simple (JS)</button>
+
+    <a href="/export/simple-list" class="btn btn-primary m-1 btn-sm">Export Excel Simple List (.NET CORE)</a>
+    <a href="/export/multipage-list" class="btn btn-primary m-1 btn-sm">Export Excel Multipage (.NET CORE)</a>
+
+
+    <a href="/export/order-report" class="btn btn-primary m-1 btn-sm">Export Order Report (ClosedXML.Report Lib) (.NET CORE)</a>
+</div>
+
+<div class="text-center"  style="margin-top:50px">
+    <h1 class="display-4">Import Excel</h1>
+
+    <form enctype="multipart/form-data" action="/import/excel" method="post">
+        <input type="file" name="file" />
+        <button type="submit" class="btn btn-primary">Import Excel</button>
+    </form>
+
+    <input type="file" name="file" id="file" style="margin-top:10px" />
+        <button onclick="importExcel()" class="btn btn-primary"  style="margin-top:10px">Import Excel (JS-1)</button>
+
+    <form enctype="multipart/form-data" action="/import/excel" method="post" id="form" style="margin-top:10px">
+            <input type="file" name="file" />
+            <button type="submit" class="btn btn-primary">Import Excel (JS-2)</button>
+        </form>
+
+</div>
+
+@section Scripts {
+    <script>
+
+        function exportExcel() {
+            fetch('/export/simple', { method: 'GET' })
+                .then(response => {
+                    return response.json()
+                }).then(data => {
+                    downloadFile(data);
+                }).catch(e => {
+                    console.log('error', e);
+                });
+        }
+
+
+        function downloadFile(base64) {
+            let bytes = base64ToByteArray(base64);
+
+            let blob = new Blob([bytes], { type: "application/octet-stream" });
+            let link = document.createElement('a');
+            link.href = window.URL.createObjectURL(blob);
+
+            let fileName = "simple.xlsx";
+            link.download = fileName;
+            link.click();
+        }
+
+        function base64ToByteArray(base64) {
+            let binaryString = window.atob(base64);
+
+            let len = binaryString.length;
+
+            let bytes = new Uint8Array(len);
+
+            for (let i = 0; i < len; i++) {
+                bytes[i] = binaryString.charCodeAt(i);
+            }
+
+            return bytes.buffer;
+        }
+
+        form.onsubmit = async function (e) {
+            e.preventDefault();
+            const formData = new FormData(form);
+
+            fetch('/import/excel', { method: 'POST', body: formData })
+                .then(response => {
+                    return response.json()
+                }).then(data => {
+                    console.log(data);
+                }).catch(e => {
+                    console.log('error', e);
+                });
+        }
+
+        async function importExcel() {
+            const file = await getFile();
+            const formData = new FormData();
+            formData.append('file', file);
+
+            fetch('/import/excel', { method: 'POST', body: formData })
+                .then(response => {
+                    return response.json()
+                }).then(data => {
+                    console.log(data);
+                }).catch(e => {
+                    console.log('error', e);
+                });
+        }
+
+        async function getFile() {
+            const file = document.querySelector('#file').files[0];
+            return file;
+        }
+
+    </script>
+}
