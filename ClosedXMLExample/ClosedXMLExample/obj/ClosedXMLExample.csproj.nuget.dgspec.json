@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Projeler\\Makaleler\\ClosedXMLExample\\ClosedXMLExample\\ClosedXMLExample.csproj": {}
+    "C:\\Users\\Enes\\Documents\\GitHub\\netcore-closedxml-using\\ClosedXMLExample\\ClosedXMLExample\\ClosedXMLExample.csproj": {}
   },
   "projects": {
-    "D:\\Projeler\\Makaleler\\ClosedXMLExample\\ClosedXMLExample\\ClosedXMLExample.csproj": {
+    "C:\\Users\\Enes\\Documents\\GitHub\\netcore-closedxml-using\\ClosedXMLExample\\ClosedXMLExample\\ClosedXMLExample.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Projeler\\Makaleler\\ClosedXMLExample\\ClosedXMLExample\\ClosedXMLExample.csproj",
+        "projectUniqueName": "C:\\Users\\Enes\\Documents\\GitHub\\netcore-closedxml-using\\ClosedXMLExample\\ClosedXMLExample\\ClosedXMLExample.csproj",
         "projectName": "ClosedXMLExample",
-        "projectPath": "D:\\Projeler\\Makaleler\\ClosedXMLExample\\ClosedXMLExample\\ClosedXMLExample.csproj",
+        "projectPath": "C:\\Users\\Enes\\Documents\\GitHub\\netcore-closedxml-using\\ClosedXMLExample\\ClosedXMLExample\\ClosedXMLExample.csproj",
         "packagesPath": "C:\\Users\\Enes\\.nuget\\packages\\",
-        "outputPath": "D:\\Projeler\\Makaleler\\ClosedXMLExample\\ClosedXMLExample\\obj\\",
+        "outputPath": "C:\\Users\\Enes\\Documents\\GitHub\\netcore-closedxml-using\\ClosedXMLExample\\ClosedXMLExample\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\",

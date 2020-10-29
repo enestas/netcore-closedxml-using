@@ -32,6 +32,11 @@ namespace ClosedXMLExample.Controllers {
             return View();
         }
 
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error() {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
         #region ClosedXML Export (excel dışa aktarma) örnekleri
         // excel export örneği, stiller, formatlar ve formüller
         [HttpGet]
@@ -143,11 +148,6 @@ namespace ClosedXMLExample.Controllers {
 
         }
 
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error() {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
         // basit ürün listesi 
         [HttpGet]
         [Route("export/simple-list")]
